@@ -42,10 +42,10 @@ const App = () => {
       </div>
       <Equipments />
       <Banner {...BannerData} />
+      <Banner2 />
       <TabComp />
       <Banner {...Banner2Data} />
       <Testimonials />
-      <Banner2 />
       <Footer />
     </div>
   );

@@ -1,82 +1,87 @@
 import React from "react";
-import { GrYoga } from "react-icons/gr";
-import { FaDumbbell } from "react-icons/fa6";
-import { GiGymBag } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { SlideLeft } from "../../../utility/animation";
-import DecryptedText from './DecryptedText';
+import {
+  SiFigma,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiCplusplus,
+} from "react-icons/si";
 
 const EquipmentData = [
   {
     id: 1,
-    icon: <GrYoga />,
-    title: "Yoga Classes",
-    desc: "Improve flexibility and peace of mind.",
+    icon: (
+      <div className="flex items-center gap-3">
+        <SiHtml5 className="text-4xl text-orange-500" />
+        <SiCss3 className="text-4xl text-blue-500" />
+        <SiJavascript className="text-4xl text-yellow-400" />
+      </div>
+    ),
+    title: "Web Development",
+    desc: "Membangun website modern dengan performa tinggi, UI responsif, dan aksesibilitas yang baik.",
     delay: 0.2,
   },
   {
     id: 2,
-    icon: <FaDumbbell />,
-    title: "Strength Training",
-    desc: "Build muscle and increase endurance.",
+    icon: <SiFigma className="text-4xl text-indigo-400" />,
+    title: "UI/UX Design",
+    desc: "Mendesain antarmuka pengguna yang intuitif dan menarik menggunakan Figma, fokus pada pengalaman pengguna.",
     delay: 0.4,
   },
   {
     id: 3,
-    icon: <GiGymBag />,
-    title: "Personal Training",
-    desc: "Get one-on-one guidance from experts.",
+    icon: <SiCplusplus className="text-4xl text-blue-500" />,
+    title: "SiCplusplus",
+    desc: "Mengembangkan aplikasi dengan bahasa C++ untuk performa tinggi, sistematis, dan efisiensi.",
     delay: 0.6,
   },
 ];
 
-<div style={{ height: "300px", position: "relative" }}>
-      </div>
-
 const Equipments = () => {
   return (
-    <div>
-      <div className="container py-24">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 font-playfair">
-          {/* Example 1: Defaults (hover to decrypt) */}
-<DecryptedText text="Hover me!" />
+    <section className="py-20 bg-gray-900 text-white">
+      <div className="container mx-auto px-6 lg:px-12">
+        {/* Header Section */}
+        <section
+          id="bio"
+          className="p-6 mb-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg"
+        >
+          <h2 className="text-xl font-bold mb-2">Tentang Saya</h2>
+          <p className="opacity-90">
+            Saya Frontend Developer yang berfokus pada membangun antarmuka
+            modern, interaktif, dan responsif. Mengutamakan desain yang menarik,
+            pengalaman pengguna yang intuitif, serta performa yang optimal.
+            Senang mengubah ide kreatif menjadi tampilan web yang fungsional dan
+            siap digunakan.
+          </p>
+        </section>
 
-{/* Example 2: Customized speed and characters */}
-<DecryptedText
-text="Customize me"
-speed={100}
-maxIterations={20}
-characters="ABCD1234!?"
-className="revealed"
-parentClassName="all-letters"
-encryptedClassName="encrypted"
-/>
-
-{/* Example 3: Animate on view (runs once) */}
-<div style={{ marginTop: '4rem' }}>
-<DecryptedText
-  text="This text animates when in view"
-  animateOn="view"
-  revealDirection="center"
-/>
-</div>
-
+        {/* Equipments Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {EquipmentData.map((item) => (
             <motion.div
+              key={item.id}
               variants={SlideLeft(item.delay)}
               initial="hidden"
               whileInView="visible"
-              key={item.id}
-              className="bg-gray-100 space-y-4 p-6 hover:bg-white rounded-xl hover:shadow-[0_0_22px_0_rgba(0,0,0,0.15)]"
+              viewport={{ once: true }}
+              className="bg-white/5 backdrop-blur-md p-8 rounded-xl 
+                         shadow-lg border border-white/10 
+                         hover:shadow-[0_0_22px_0_rgba(0,0,0,0.4)] 
+                         hover:bg-white/10 transition-all duration-300"
             >
-              {item.icon && <div className="text-4xl">{item.icon}</div>}
-              <p className="text-2xl font-semibold">{item.title}</p>
-              <p className="text-gray-500">{item.desc}</p>
+              {/* Icon */}
+              <div className="text-5xl text-indigo-400 mb-6">{item.icon}</div>
+
+              {/* Description */}
+              <p className="text-gray-300">{item.desc}</p>
             </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
